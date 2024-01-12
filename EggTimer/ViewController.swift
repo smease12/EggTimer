@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
     var counter = 0
     var timer = Timer()
+    @IBOutlet var topLabel: UILabel!
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
@@ -22,14 +23,19 @@ class ViewController: UIViewController {
         counter = eggTimes[hardness]!
         //print(eggTimes[hardness]!)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-
     }
+    
     
     @objc func updateCounter() {
         
         if counter >= 0 {
             print(counter)
             counter -= 1
+            if counter == 0{
+                topLabel.text = "Done"
+            }
         }
+        
+        
     }
 }
