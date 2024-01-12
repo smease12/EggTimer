@@ -15,12 +15,14 @@ class ViewController: UIViewController {
     var timer = Timer()
     @IBOutlet weak var topLabel: UILabel!
     
+    @IBOutlet weak var progressBar: UIProgressView!
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
         timer.invalidate()
         
         let hardness = sender.currentTitle!
         counter = eggTimes[hardness]!
+        progressBar.progress = 100
         //print(eggTimes[hardness]!)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     }
