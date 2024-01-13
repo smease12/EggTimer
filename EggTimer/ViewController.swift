@@ -4,17 +4,21 @@
 //
 //  Created by Angela Yu on 08/07/2019.
 //  Copyright © 2019 The App Brewery. All rights reserved.
-//
+//  updated by me
 
 import UIKit
+import AVFoundation
+
 
 class ViewController: UIViewController {
     
-    let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    let eggTimes = ["Soft": 3, "Medium": 420, "Hard": 720]
     var counter = 0
     var timer = Timer()
     var hardness = ""
     @IBOutlet weak var topLabel: UILabel!
+    var player: AVAudioPlayer!
+
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBAction func hardnessSelected(_ sender: UIButton) {
@@ -38,6 +42,9 @@ class ViewController: UIViewController {
             if counter == 0{
                 timer.invalidate()
                 topLabel.text = "DONE!"
+                let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+                player = try! AVAudioPlayer(contentsOf: url!)
+                player.play()
             }
             
             switch hardness{
